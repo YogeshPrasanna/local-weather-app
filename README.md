@@ -2,4 +2,4 @@
 Gets yours current location and provides you the current weather forecast in your area
 
 ## Running the application
-Just run the index file in firefox
+Just run the index file in any browser
