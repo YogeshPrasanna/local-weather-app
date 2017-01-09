@@ -34,14 +34,7 @@ $(document).ready(function() {
                         "background-size": "100vw 100vh"
                     });
                     $('#weather-icon').css({
-                        'background-image': 'url(https://s25.postimg.org/58eqofkan/clear_sky.png)',
-                        'background-size': "40px 40px",
-                        'position': 'absolute',
-                        'top': '30px',
-                        'left': '30px',
-                        'height': '40px',
-                        'width': '40px',
-                        'display': 'inline-block'
+                        'background-image': 'url(https://s25.postimg.org/58eqofkan/clear_sky.png)'
                     });
                 } else if (desc === 'overcast clouds') {
                     $('body').css({
@@ -49,14 +42,7 @@ $(document).ready(function() {
                         'background-size': '100vw 100vh'
                     });
                     $('#weather-icon').css({
-                        'background-image': 'url(https://s25.postimg.org/omk61v14v/overcast_clouds.png)',
-                        'background-size': "40px 40px",
-                        'position': 'absolute',
-                        'top': '30px',
-                        'left': '30px',
-                        'height': '40px',
-                        'width': '40px',
-                        'display': 'inline-block'
+                        'background-image': 'url(https://s25.postimg.org/omk61v14v/overcast_clouds.png)'
                     });
                 } else if (desc === 'broken clouds') {
                     $('body').css({
@@ -64,14 +50,7 @@ $(document).ready(function() {
                         'background-size': '100vw 100vh'
                     });
                     $('#weather-icon').css({
-                        'background-image': 'url(https://s25.postimg.org/pat0kszun/broken_clouds.png)',
-                        'background-size': "40px 40px",
-                        'position': 'absolute',
-                        'top': '30px',
-                        'left': '30px',
-                        'height': '40px',
-                        'width': '40px',
-                        'display': 'inline-block'
+                        'background-image': 'url(https://s25.postimg.org/pat0kszun/broken_clouds.png)'
                     });
                 } else if (desc === 'light rain' || desc === 'moderate rain' || desc === 'heavy rain') {
                     $('body').css({
@@ -79,14 +58,7 @@ $(document).ready(function() {
                         'background-size': '100vw 100vh'
                     });
                     $('#weather-icon').css({
-                        'background-image': 'url(https://s25.postimg.org/8ht5uw8e7/light_rain.png)',
-                        'background-size': "40px 40px",
-                        'position': 'absolute',
-                        'top': '30px',
-                        'left': '30px',
-                        'height': '40px',
-                        'width': '40px',
-                        'display': 'inline-block'
+                        'background-image': 'url(https://s25.postimg.org/8ht5uw8e7/light_rain.png)'
                     });
                 } else if (desc == 'light snow' || desc == 'moderate snow' || desc == 'heavy snow') {
                     $('body').css({
@@ -94,14 +66,7 @@ $(document).ready(function() {
                         'background-size': '100vw 100vh'
                     });
                     $('#weather-icon').css({
-                        'background-image': 'url(https://s25.postimg.org/4ggo2z5hb/snow.png)',
-                        'background-size': "40px 40px",
-                        'position': 'absolute',
-                        'top': '30px',
-                        'left': '30px',
-                        'height': '40px',
-                        'width': '40px',
-                        'display': 'inline-block'
+                        'background-image': 'url(https://s25.postimg.org/4ggo2z5hb/snow.png)'
                     });
                 } else {
                     $('body').css({
@@ -144,7 +109,30 @@ $(document).ready(function() {
     // }
 
     if (window.navigator.userAgent.includes('Chrome') == true) {
-        alert("Unfortunately Browsers such as chrome , Brave and Browsers in android doesn\'t support Geolocation , so Please view this app in Mozilla Firefox or Microsoft Edge or IE");
+        //alert("Unfortunately Browsers such as chrome , Brave and Browsers in android doesn\'t support Geolocation , so Please view this app in Mozilla Firefox or Microsoft Edge or IE");
+        var callLocation = function callLocation() {
+
+            var geoSuccess = function(position) {
+                // Do magic with location
+                startPos = position;
+                position.coords.latitude = startPos.coords.latitude;
+                position.coords.longitude = startPos.coords.longitude;
+                catchData(position.coords.latitude, position.coords.longitude);
+            };
+            var geoError = function(error) {
+                return null;
+            };
+
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(geoSuccess, geoError);
+            } else {
+                alert("please share the location");
+            }
+        }
+
+        callLocation();
+
+
     } else {
         callLocation();
     };
